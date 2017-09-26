@@ -18,9 +18,14 @@ class FollowyPlugin(plugins.SingletonPlugin):
     def before_map(self, m):
 
         # List Datasets that a user is follow
-        m.connect('user_dataset_follow', '/dashboard/datasets/follow',
+        m.connect('user_dataset_follow', '/user/datasets/follow/{id}',
                   controller='ckanext.followy.controllers.ui_controller:DatasetFollow',
-                  action='following', conditions=dict(method=['GET']),
+                  action='user_dataset_followee', conditions=dict(method=['GET']),
+                  ckan_icon='thumbs-up-alt')
+
+        m.connect('dashboard_dataset_follow', '/dashboard/datasets/follow',
+                  controller='ckanext.followy.controllers.ui_controller:DatasetFollow',
+                  action='dashboard_dataset_followee', conditions=dict(method=['GET']),
                   ckan_icon='thumbs-up-alt')
 
         return m
