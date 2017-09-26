@@ -17,13 +17,14 @@ class FollowyPlugin(plugins.SingletonPlugin):
 
     def before_map(self, m):
 
-        # List Datasets that a user is follow
-        m.connect('user_dataset_follow', '/user/datasets/follow/{id}',
+        # List Datasets that a user is following on profile
+        m.connect('user_dataset_followee', '/user/datasets/following/{id}',
                   controller='ckanext.followy.controllers.ui_controller:DatasetFollowee',
                   action='user_dataset_followee', conditions=dict(method=['GET']),
                   ckan_icon='thumbs-up-alt')
 
-        m.connect('dashboard_dataset_follow', '/dashboard/datasets/follow',
+        # List Datasets that a user is following on dashboard
+        m.connect('dashboard_dataset_followee', '/dashboard/datasets/following',
                   controller='ckanext.followy.controllers.ui_controller:DatasetFollowee',
                   action='dashboard_dataset_followee', conditions=dict(method=['GET']),
                   ckan_icon='thumbs-up-alt')
@@ -31,5 +32,4 @@ class FollowyPlugin(plugins.SingletonPlugin):
         return m
 
     def after_map(self, m):
-
         return m
