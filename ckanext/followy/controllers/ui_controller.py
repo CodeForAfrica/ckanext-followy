@@ -1,12 +1,17 @@
 import ckan.lib.base as base
 import ckan.model as model
 import ckan.plugins as plugins
-import ckan.lib.helpers as helpers
+import ckan.authz as authz
+import ckan.logic as logic
+import ckan.lib.helpers as h
 
 from ckan.common import request
 
 toolkit = plugins.toolkit
 c = toolkit.c
+abort = base.abort
+NotFound = logic.NotFound
+NotAuthorized = logic.NotAuthorized
 
 
 class DatasetFollow(base.BaseController):
@@ -16,5 +21,26 @@ class DatasetFollow(base.BaseController):
                 'user': c.user, 'auth_user_obj': c.userobj}
 
     def following(self):
+        context = self._get_context()
+        data_dict = {'id': context['auth_user_obj'].id,
+                     'user_obj': c.userobj,
+                     'include_datasets': True,
+                     'include_num_followers': True}
+
+        followee_list = toolkit.get_action('dataset_followee_list')(context, data_dict)
+        c.is_sysadmin = authz.is_sysadmin(c.user)
+
+        try:
+            user_dict = toolkit.get_action('user_show')(context, data_dict)
+        except NotFound:
+            abort(404, _('User not found'))
+        except NotAuthorized:
+            abort(403, _('Not authorized to see this page'))
+
+        c.user_dict = user_dict
+        c.is_myself = user_dict['name'] == c.user
+        c.about_formatted = h.render_markdown(user_dict['about'])
+        return toolkit.render('user/datasets_followee.html', extra_vars={'followees': followee_list})
+
 
 

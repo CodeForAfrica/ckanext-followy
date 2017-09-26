@@ -19,7 +19,7 @@ class FollowyPlugin(plugins.SingletonPlugin):
 
         # List Datasets that a user is follow
         m.connect('user_dataset_follow', '/dashboard/datasets/follow',
-                  controller='ckanext.datarequests.controllers.ui_controller:DatasetFollow',
+                  controller='ckanext.followy.controllers.ui_controller:DatasetFollow',
                   action='following', conditions=dict(method=['GET']),
                   ckan_icon='thumbs-up-alt')
 
