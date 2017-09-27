@@ -1,131 +1,90 @@
 
-# ckanext-followy
-A CKAN extension to show the datasets a user is following.
+Followy CKAN Extension
+=========================
 
-------------
+A CKAN extension that displays the datasets a user is following on their profile and dashboard in the `Following` tab.
+
+
 Requirements
 ------------
 
-For example, you might want to mention here which versions of CKAN this
-extension works with.
+This extension requires an installation of CKAN. To install and set up CKAN, visit [CKAN Documentation](http://docs.ckan.org/en/latest/maintaining/installing/index.html)
 
 
-------------
+
 Installation
 ------------
 
-.. Add any additional install steps to the list below.
-   For example installing any non-Python dependencies or adding any required
-   config settings.
+Step 1:
 
-To install ckanext-followy:
+* Activate your virtual environment using the path to your virtual environment. If you have followed the default path when installing CKAN on Mac OSX, you may have to use `/usr/local/lib/ckan/default/bin/activate`. You can copy the code as is below, including the preceeding dot.
 
-1. Activate your CKAN virtual environment, for example::
+```bash
+. /usr/lib/ckan/default/bin/activate
+```
 
-     . /usr/lib/ckan/default/bin/activate
+Step 2:
 
-2. Install the ckanext-followy Python package into your virtual environment::
-
-     pip install ckanext-followy
-
-3. Add ``followy`` to the ``ckan.plugins`` setting in your CKAN
-   config file (by default the config file is located at
-   ``/etc/ckan/default/production.ini``).
-
-4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
-
-     sudo service apache2 reload
+* Install the extension
 
 
----------------
-Config Settings
----------------
-
-Document any optional config settings here. For example::
-
-    # The minimum number of hours to wait before re-checking a resource
-    # (optional, default: 24).
-    ckanext.followy.some_setting = some_default_value
-
-
-------------------------
-Development Installation
-------------------------
-
-To install ckanext-followy for development, activate your CKAN virtualenv and
-do::
-
-    git clone https://github.com/andela-iukwuoma/ckanext-followy.git
-    cd ckanext-followy
-    python setup.py develop
-    pip install -r dev-requirements.txt
+>You can download the source code and install the extension manually. To do so, execute the following command:
+> ```bash
+> pip install -e git+https://github.com/CodeForAfricaLabs/ckanext-followy.git#egg=ckanext-followy
+> ```
+> **Alternatively**: You can clone this repo (preferably into the /src directory where you installed CKAN), cd into ckanext-followy and run
+>```bash
+> python setup.py develop
+> ```
 
 
------------------
-Running the Tests
------------------
+Step 3:
 
-To run the tests, do::
+* Modify your configuration file (generally in `/etc/ckan/default/production.ini`) and add `followy` to the `ckan.plugins` property.
 
-    nosetests --nologcapture --with-pylons=test.ini
+```bash
+ckan.plugins = followy <OTHER_PLUGINS>
+```
 
-To run the tests and produce a coverage report, first make sure you have
-coverage installed in your virtualenv (``pip install coverage``) then run::
+Step 4:
 
-    nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.followy --cover-inclusive --cover-erase --cover-tests
+* Restart your server:
 
+```bash
+paster serve /etc/ckan/default/production.ini
+```
 
----------------------------------
-Registering ckanext-followy on PyPI
----------------------------------
+OR
 
-ckanext-followy should be availabe on PyPI as
-https://pypi.python.org/pypi/ckanext-followy. If that link doesn't work, then
-you can register the project on PyPI for the first time by following these
-steps:
+```bash
+paster serve --reload /etc/ckan/default/production.ini
+```
 
-1. Create a source distribution of the project::
-
-     python setup.py sdist
-
-2. Register the project::
-
-     python setup.py register
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the first release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.1 then do::
-
-       git tag 0.0.1
-       git push --tags
+With `--reload`, your server is restarted automatically whenever you make changes to your source code.
 
 
-----------------------------------------
-Releasing a New Version of ckanext-followy
-----------------------------------------
+Support
+-------
 
-ckanext-followy is availabe on PyPI as https://pypi.python.org/pypi/ckanext-followy.
-To publish a new version to PyPI follow these steps:
+If you've found a bug/issue in the extension, please open a new issue [here](https://github.com/CodeForAfricaLabs/ckanext-followy/issues/new) (try
+searching first to see if there's already an [issue](https://github.com/CodeForAfricaLabs/ckanext-followy/issues) for your bug).
 
-1. Update the version number in the ``setup.py`` file.
-   See `PEP 440 <http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers>`_
-   for how to choose version numbers.
 
-2. Create a source distribution of the new version::
 
-     python setup.py sdist
+Contributing to Followy CKAN Extension
+---------------------------------------------
 
-3. Upload the source distribution to PyPI::
+If you have interest in contributing to the development of Followy extension, you are welcome. A good starting point
+will be reading the CKAN general [Contributing guide](http://docs.ckan.org/en/ckan-2.7.0/contributing/index.html). Then you can check out 
+existing [issues](https://github.com/CodeForAfricaLabs/ckanext-followy/issues) that are open for contribution; new features and issues are welcome.
+To work on any issue, comment on the issue to indicate your interest and the issue will be assigned to you. It is always a good idea to seek
+for clarification (where necessary) on any issue before you work on it.
 
-     python setup.py sdist upload
+**It is important that changes that require some form of configuration be documented in the README.**
 
-4. Tag the new release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.2 then do::
+Copying and License
+--------------------
 
-       git tag 0.0.2
-       git push --tags
+This project is copyright (c) 2017 CodeForAfrica.
+
+It is open and licensed under the MIT License.
