@@ -1,5 +1,6 @@
 import ckan.plugins as plugins
-import ckan.plugins.toolkit as toolkit
+
+toolkit = plugins.toolkit
 
 
 class FollowyPlugin(plugins.SingletonPlugin):
@@ -17,13 +18,13 @@ class FollowyPlugin(plugins.SingletonPlugin):
 
     def before_map(self, m):
 
-        # List Datasets that a user is following on profile
+        # Lists Datasets that a user is following on profile
         m.connect('user_dataset_followee', '/user/datasets/following/{id}',
                   controller='ckanext.followy.controllers.ui_controller:DatasetFollowee',
                   action='user_dataset_followee', conditions=dict(method=['GET']),
                   ckan_icon='thumbs-up-alt')
 
-        # List Datasets that a user is following on dashboard
+        # Lists Datasets that a user is following on dashboard
         m.connect('dashboard_dataset_followee', '/dashboard/datasets/following',
                   controller='ckanext.followy.controllers.ui_controller:DatasetFollowee',
                   action='dashboard_dataset_followee', conditions=dict(method=['GET']),

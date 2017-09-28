@@ -21,14 +21,14 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/andela/ckanext-followy',
+    url='https://github.com/CodeForAfricaLabs/ckanext-followy',
 
     # Author details
-    author='''Ignatius Ukwuoma''',
-    author_email='''ignatius.ukwuoma@andela.com''',
+    author='''Code for Africa''',
+    author_email='''support@codeforafrica.org''',
 
     # Choose your license
-    license='AGPL',
+    license='MIT',
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -39,7 +39,7 @@ setup(
         'Development Status :: 4 - Beta',
 
         # Pick your license as you wish (should match "license" above)
-        'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
+        'License :: MIT License',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
@@ -48,7 +48,7 @@ setup(
 
 
     # What does your project relate to?
-    keywords='''CKAN CKAN, datasetst, user, following''',
+    keywords='''CKAN, datasets, user, following''',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
