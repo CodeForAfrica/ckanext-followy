@@ -1,0 +1,26 @@
+{% extends "user/read_base.html" %}
+
+{% block primary_content_inner %}
+  <h2 class="hide-heading">
+    {% block page_heading %}{{ _('Following') }}{% endblock %}
+  </h2>
+  {% block package_list %}
+  {% if followees %}
+    {% snippet 'snippets/package_list.html', packages=followees %}
+  {% else %}
+
+    {% if c.is_myself %}
+      <p class="empty">
+        {{ _('You haven\'t followed any datasets.') }}
+        {% if h.check_access('package_search') %}
+          {% link_for _('Follow one now?'), controller='package', action='search' %}
+        {% endif %}
+      </p>
+    {% else %}
+      <p class="empty">
+        {{ _('User hasn\'t followed any datasets.') }}
+      </p>
+    {% endif %}
+  {% endif %}
+  {% endblock %}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% ckan_extends %}
+
+{% block content_primary_nav %}
+  {{ super() }}
+  {{ h.build_nav_icon('user_dataset_followee', _('Following'), id=user.name) }}
+{% endblock %}
