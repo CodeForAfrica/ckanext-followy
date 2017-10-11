@@ -45,7 +45,7 @@ class DatasetFollowee(base.BaseController):
         c.about_formatted = h.render_markdown(user_dict['about'])
 
         # Pass a reversed followee list to the template so that newly followed datasets appear first
-        return toolkit.render('user/datasets_followee.html', extra_vars={'followees': followee_list[::-1]})
+        return toolkit.render('followy/datasets_followee.html', extra_vars={'followees': followee_list[::-1]})
 
     def dashboard_dataset_followee(self):
         '''Gets the datasets user is following and
@@ -59,6 +59,6 @@ class DatasetFollowee(base.BaseController):
         followee_list = toolkit.get_action('dataset_followee_list')(context, data_dict)
 
         # Pass a reversed followee list to the template so that newly followed datasets appear first
-        return toolkit.render('user/dashboard_datasets_followee.html', extra_vars={'followees': followee_list[::-1]})
+        return toolkit.render('followy/dashboard_datasets_followee.html', extra_vars={'followees': followee_list[::-1]})
 
 
