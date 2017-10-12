@@ -1,0 +1,17 @@
+{% extends "user/dashboard_datasets.html" %}
+
+{% block page_primary_action %}{% endblock %}
+
+{% block primary_content_inner %}
+  <h2 class="hide-heading">{{ _('Following') }}</h2>
+  {% if followees %}
+    {% snippet 'snippets/package_list.html', packages=followees %}
+  {% else %}
+    <p class="empty">
+      {{ _('You haven\'t followed any datasets.') }}
+      {% if h.check_access('package_search') %}
+        {% link_for _('Follow one now?'), controller='package', action='search' %}
+      {% endif %}
+    </p>
+  {% endif %}
+{% endblock %}
