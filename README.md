@@ -63,6 +63,24 @@ paster serve --reload /etc/ckan/default/production.ini
 With `--reload`, your server is restarted automatically whenever you make changes to your source code.
 
 
+Running the Tests
+-------
+
+To run the tests, do:
+
+```bash
+nosetests --nologcapture --with-pylons=test.ini
+```
+
+To run the tests and produce a coverage report, first make sure you have coverage installed in your virtualenv (`pip install coverage`) then run:
+
+```bash
+nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.followy --cover-inclusive --cover-erase --cover-tests
+```
+
+If you have issues running the tests, check if the path to your CKAN `test-core.ini` file from this extension is correct 
+in the [app:main] section of this extension's `test.ini` file
+
 Support
 -------
 
